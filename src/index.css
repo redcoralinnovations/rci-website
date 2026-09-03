@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-coral: #E04A3F;
+  --color-coral-50: #FEF2F1;
+  --color-coral-600: #C03830;
+  --color-dark: #0F1118;
+  --color-dark-card: #161B25;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #FAFAF9;
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
