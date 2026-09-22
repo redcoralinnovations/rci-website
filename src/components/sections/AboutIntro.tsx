@@ -38,9 +38,9 @@ export function AboutIntro() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-2 gap-4"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="grid grid-cols-1 gap-4 min-[430px]:grid-cols-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
