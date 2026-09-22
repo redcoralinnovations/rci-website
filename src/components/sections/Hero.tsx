@@ -1,84 +1,120 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Activity, ArrowRight, Braces, Cloud, Layers3, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { buttonVariants } from '../common/Button';
-import heroConcept from '../../assets/rci-hero-concept.png';
 
-export function HeroVisual() {
+type CapabilityCardProps = {
+  icon: typeof Layers3;
+  label: string;
+  className: string;
+};
+
+function CapabilityCard({ icon: Icon, label, className }: CapabilityCardProps) {
   return (
-    <div className="relative flex items-center justify-center select-none">
-      {/* Soft coral glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
+    <div className={`absolute hidden items-center gap-2 border border-dark/10 bg-white/90 px-3 py-2 shadow-[0_12px_28px_-18px_rgba(15,17,24,0.35)] backdrop-blur-sm sm:flex ${className}`}>
+      <Icon className="h-3.5 w-3.5 text-coral" strokeWidth={1.75} />
+      <span className="text-[10px] font-semibold tracking-wide text-dark">{label}</span>
+    </div>
+  );
+}
 
-      {/* Main UI card */}
-      <div className="relative z-10 w-full max-w-sm">
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
-          {/* Window chrome */}
-          <div className="bg-gray-50/80 border-b border-gray-100 px-4 py-3 flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-            <div className="ml-2 h-3 w-32 bg-gray-200/80 rounded-full" />
+function HeroVisual() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div className="relative mx-auto w-full max-w-[38rem] select-none py-8 sm:py-12 lg:py-8">
+      <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-coral/15 blur-3xl" />
+      <div className="absolute inset-x-[11%] top-[16%] bottom-[16%] bg-[radial-gradient(rgba(15,17,24,0.14)_1px,transparent_1px)] bg-[size:14px_14px] opacity-60" />
+      <div className="absolute -left-1 top-[17%] h-24 w-24 border-l border-t border-coral/60 sm:-left-5 sm:h-32 sm:w-32" />
+      <div className="absolute bottom-[8%] right-2 h-20 w-20 border-b border-r border-dark/15 sm:right-7 sm:h-28 sm:w-28" />
+
+      <motion.div
+        className="relative z-10 mx-auto w-[92%] border border-dark/10 bg-[#fdfdfb] shadow-[0_28px_70px_-36px_rgba(15,17,24,0.45)]"
+        initial={false}
+        animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <div className="flex h-10 items-center border-b border-dark/10 bg-white px-3 sm:px-4">
+          <div className="flex gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-coral/75" />
+            <span className="h-2 w-2 rounded-full bg-amber-300" />
+            <span className="h-2 w-2 rounded-full bg-emerald-300" />
           </div>
+          <div className="mx-auto h-4 w-28 border border-gray-200 bg-gray-50 sm:w-40" />
+          <div className="h-4 w-5" />
+        </div>
 
-          {/* Content */}
-          <div className="p-5 space-y-4">
-            {/* Nav mockup */}
-            <div className="flex items-center gap-2">
-              <div className="h-2.5 w-10 bg-gray-200 rounded-full" />
-              <div className="h-2.5 w-8 bg-gray-200 rounded-full" />
-              <div className="h-2.5 w-12 bg-gray-200 rounded-full" />
-              <div className="ml-auto h-5 w-16 bg-coral rounded-md" />
+        <div className="grid min-h-[260px] grid-cols-[3.4rem_1fr] sm:min-h-[330px] sm:grid-cols-[4.5rem_1fr]">
+          <aside className="border-r border-dark/10 bg-[#f8f8f6] px-3 py-4">
+            <div className="h-5 w-5 bg-coral" />
+            <div className="mt-7 space-y-4">
+              <span className="block h-1.5 w-5 bg-dark/20" />
+              <span className="block h-1.5 w-5 bg-dark/12" />
+              <span className="block h-1.5 w-5 bg-dark/12" />
+            </div>
+          </aside>
+
+          <div className="p-4 sm:p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-coral">RCI Studio</p>
+                <h3 className="mt-1 text-lg font-semibold tracking-tight text-dark sm:text-2xl">Build what&apos;s next</h3>
+              </div>
+              <div className="flex h-7 w-7 items-center justify-center bg-dark text-white">
+                <Sparkles className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </div>
             </div>
 
-            {/* Metrics row */}
-            <div className="grid grid-cols-2 gap-2.5">
-              <div className="bg-gray-50 rounded-xl p-3.5">
-                <div className="text-[10px] text-gray-400 mb-1 uppercase tracking-wide">Revenue</div>
-                <div className="text-lg font-bold text-gray-900">£48.2k</div>
-                <div className="text-[10px] text-emerald-500 font-medium mt-0.5">↑ 12% this month</div>
-              </div>
-              <div className="bg-coral-50 rounded-xl p-3.5 border border-coral/10">
-                <div className="text-[10px] text-coral/70 mb-1 uppercase tracking-wide">Projects</div>
-                <div className="text-lg font-bold text-coral">24</div>
-                <div className="text-[10px] text-gray-400 mt-0.5">Active</div>
-              </div>
-            </div>
-
-            {/* Chart bars */}
-            <div className="space-y-2">
-              {[
-                { label: 'Web', w: 85, accent: true },
-                { label: 'Apps', w: 62, accent: false },
-                { label: 'SaaS', w: 90, accent: false },
-                { label: 'IT', w: 48, accent: false },
-              ].map(({ label, w, accent }) => (
-                <div key={label} className="flex items-center gap-2.5">
-                  <span className="text-[10px] text-gray-400 w-6 shrink-0">{label}</span>
-                  <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full rounded-full ${accent ? 'bg-coral' : 'bg-gray-300'}`}
-                      style={{ width: `${w}%` }}
-                    />
-                  </div>
+            <div className="mt-5 grid grid-cols-[1.3fr_0.7fr] gap-3 sm:gap-4">
+              <div className="border border-dark/10 bg-white p-3 sm:p-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-500">Momentum</p>
+                  <Activity className="h-3.5 w-3.5 text-coral" strokeWidth={1.7} />
                 </div>
-              ))}
+                <div className="mt-4 flex h-16 items-end gap-1.5 sm:h-20">
+                  {[32, 48, 42, 68, 56, 82, 76].map((height, index) => (
+                    <span key={height} className={`w-full ${index === 5 ? 'bg-coral' : 'bg-dark/12'}`} style={{ height: `${height}%` }} />
+                  ))}
+                </div>
+              </div>
+              <div className="border border-dark/10 bg-[#fff7f5] p-3 sm:p-4">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-500">Active</p>
+                <p className="mt-4 text-2xl font-semibold tracking-tight text-dark sm:text-3xl">24</p>
+                <div className="mt-3 h-1.5 w-full bg-coral/20"><span className="block h-full w-2/3 bg-coral" /></div>
+              </div>
+            </div>
+
+            <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="border border-dark/10 bg-white p-3">
+                <div className="flex items-center gap-2"><span className="h-2 w-2 bg-coral" /><span className="text-[10px] font-semibold text-dark">Project system</span></div>
+                <span className="mt-3 block h-1.5 w-4/5 bg-dark/12" />
+              </div>
+              <div className="border border-dark/10 bg-white p-3">
+                <div className="flex items-center gap-2"><span className="h-2 w-2 border border-coral" /><span className="text-[10px] font-semibold text-dark">Ready to ship</span></div>
+                <span className="mt-3 block h-1.5 w-3/5 bg-dark/12" />
+              </div>
             </div>
           </div>
         </div>
+      </motion.div>
 
-        {/* Live badge */}
-        <div className="absolute -top-3 -right-3 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-xs font-semibold text-gray-700">Live</span>
-        </div>
+      <motion.div
+        className="absolute bottom-[1%] right-[1%] z-20 hidden w-32 border border-dark/10 bg-white p-3 shadow-[0_18px_35px_-22px_rgba(15,17,24,0.5)] sm:block lg:right-0"
+        initial={false}
+        animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+      >
+        <div className="mx-auto h-1 w-7 bg-dark/15" />
+        <p className="mt-4 text-[8px] font-bold uppercase tracking-[0.15em] text-coral">Mobile view</p>
+        <span className="mt-2 block h-2 w-4/5 bg-dark" />
+        <span className="mt-2 block h-1.5 w-full bg-dark/10" />
+        <span className="mt-1 block h-1.5 w-3/5 bg-dark/10" />
+        <div className="mt-4 h-12 bg-coral/10 p-2"><span className="block h-full w-3/4 bg-coral" /></div>
+      </motion.div>
 
-        {/* Performance badge */}
-        <div className="absolute -bottom-3 -left-3 bg-white rounded-xl px-3.5 py-2.5 shadow-lg border border-gray-100">
-          <div className="text-[10px] text-gray-400 uppercase tracking-wide">Performance</div>
-          <div className="text-sm font-bold text-coral mt-0.5">98 / 100</div>
-        </div>
-      </div>
+      <CapabilityCard icon={Layers3} label="Web Applications" className="left-0 top-[9%]" />
+      <CapabilityCard icon={Cloud} label="Cloud & Hosting" className="right-1 top-[12%]" />
+      <CapabilityCard icon={Braces} label="Scalable Software" className="bottom-[8%] left-[4%] lg:-left-3" />
     </div>
   );
 }
@@ -92,71 +128,33 @@ const fadeUp = (delay = 0) => ({
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#fafaf7]">
-      {/* Dot grid */}
-      <div className="absolute inset-0 [background-image:radial-gradient(#E5E7EB_1px,transparent_1px)] [background-size:28px_28px] opacity-60 pointer-events-none" />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-[#FAFAF9]/90 to-coral/5 pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(15,17,24,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,17,24,0.035)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
+      <div className="pointer-events-none absolute right-0 top-24 h-[34rem] w-[34rem] -translate-y-1/4 translate-x-1/3 rounded-full bg-coral/10 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 w-full">
-          <div className="relative mx-auto grid min-h-[min(780px,100svh)] max-w-7xl items-center gap-12 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[0.94fr_1.06fr] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-24">
-          {/* Left: text */}
-          <div>
-
-
-
-              <motion.p
-                className="mb-7 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-coral"
-                {...fadeUp(0)}
-              >
-                <span className="h-px w-9 bg-coral" />
-                Your partner in digital growth
-              </motion.p>
-              <motion.h1
-                className="max-w-xl font-serif text-5xl font-semibold leading-[0.98] tracking-normal text-dark sm:text-6xl lg:text-[4.5rem] xl:text-[5.1rem]"
-                {...fadeUp(0.08)}
-              >
-                We design and build digital products that <span className="text-coral">move businesses forward.</span>
-              </motion.h1>
-              <motion.p
-                className="mt-7 max-w-lg text-base leading-7 text-gray-600 sm:text-lg"
-                {...fadeUp(0.16)}
-              >
-                Custom websites, web applications and software solutions, designed, developed and
-                supported by Red Coral Innovations.
-              </motion.p>
-              <motion.div className="mt-9 flex flex-wrap gap-3" {...fadeUp(0.24)}>
-                <Link to="/contact" className={buttonVariants({ variant: 'primary', size: 'lg' })}>
-                  Start a Project
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-                <Link to="/services" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
-                  Explore Our Services
-                </Link>
-              </motion.div>
-          </div>
-
-          {/* Right: abstract visual */}
-            <motion.div
-              className="relative mx-auto w-full max-w-xl lg:max-w-none"
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.65, delay: 0.16, ease: 'easeOut' }}
-            >
-              <div className="absolute -left-3 top-[14%] h-20 w-20 border-l border-t border-coral/50 sm:-left-6 sm:h-32 sm:w-32" />
-              <div className="absolute -bottom-5 right-[5%] h-24 w-24 border-b border-r border-dark/15 sm:h-36 sm:w-36" />
-              <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-coral/10 blur-2xl" />
-              <div className="relative overflow-hidden border border-dark/10 bg-white p-2 shadow-[0_28px_70px_-30px_rgba(15,17,24,0.35)] sm:p-3">
-                <img
-                  src={heroConcept}
-                  alt="A preview of a Red Coral Innovations digital product interface"
-                  className="aspect-[1.14] w-full object-cover"
-                />
-              </div>
-              <p className="mt-4 text-right text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400">
-                Digital products, built with intent
-              </p>
-            </motion.div>
+      <div className="relative mx-auto grid min-h-[min(780px,100svh)] max-w-7xl items-center gap-12 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[0.94fr_1.06fr] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-24">
+        <div className="relative z-10 max-w-2xl">
+          <motion.p className="mb-7 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-coral" {...fadeUp(0)}>
+            <span className="h-px w-9 bg-coral" />
+            Your partner in digital growth
+          </motion.p>
+          <motion.h1 className="max-w-xl font-serif text-5xl font-semibold leading-[0.98] tracking-normal text-dark sm:text-6xl lg:text-[4.5rem] xl:text-[5.1rem]" {...fadeUp(0.08)}>
+            We design and build digital products that <span className="text-coral">move businesses forward.</span>
+          </motion.h1>
+          <motion.p className="mt-7 max-w-lg text-base leading-7 text-gray-600 sm:text-lg" {...fadeUp(0.16)}>
+            Custom websites, web applications and software solutions, designed, developed and supported by Red Coral Innovations.
+          </motion.p>
+          <motion.div className="mt-9 flex flex-wrap gap-3" {...fadeUp(0.24)}>
+            <Link to="/contact" className={buttonVariants({ variant: 'primary', size: 'lg' })}>
+              Start a Project <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/services" className={buttonVariants({ variant: 'outline', size: 'lg' })}>Explore Our Services</Link>
+          </motion.div>
         </div>
+
+        <motion.div className="relative mx-auto w-full max-w-xl lg:max-w-none" initial={false} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+          <HeroVisual />
+          <p className="mt-1 text-right text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400">Digital products, built with intent</p>
+        </motion.div>
       </div>
     </section>
   );
