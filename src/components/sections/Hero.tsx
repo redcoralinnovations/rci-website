@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, Braces, Cloud, Layers3, Sparkles } from 'lucide-react';
+import { Activity, ArrowRight, Cloud, Layers3, Sparkles } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { buttonVariants } from '../common/Button';
 
@@ -112,9 +112,8 @@ function HeroVisual() {
         <div className="mt-4 h-12 bg-coral/10 p-2"><span className="block h-full w-3/4 bg-coral" /></div>
       </motion.div>
 
-      <CapabilityCard icon={Layers3} label="Web Applications" className="left-0 top-[9%]" />
-      <CapabilityCard icon={Cloud} label="Cloud & Hosting" className="right-1 top-[12%]" />
-      <CapabilityCard icon={Braces} label="Scalable Software" className="bottom-[8%] left-[4%] lg:-left-3" />
+      <CapabilityCard icon={Layers3} label="Web Applications" className="left-[5%] top-[7%]" />
+      <CapabilityCard icon={Cloud} label="Cloud & Hosting" className="right-3 top-[15%] md:hidden lg:flex" />
     </div>
   );
 }
@@ -131,14 +130,14 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(15,17,24,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,17,24,0.035)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
       <div className="pointer-events-none absolute right-0 top-24 h-[34rem] w-[34rem] -translate-y-1/4 translate-x-1/3 rounded-full bg-coral/10 blur-3xl" />
 
-      <div className="relative mx-auto grid min-h-[min(780px,100svh)] max-w-7xl items-center gap-12 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[0.94fr_1.06fr] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-24">
-        <div className="relative z-10 max-w-2xl">
+      <div className="relative mx-auto grid min-h-[min(780px,100svh)] max-w-7xl items-center gap-12 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:pb-20 lg:pt-24">
+        <div className="relative z-10 max-w-2xl lg:col-span-7">
           <motion.p className="mb-7 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-coral" {...fadeUp(0)}>
             <span className="h-px w-9 bg-coral" />
             Your partner in digital growth
           </motion.p>
-          <motion.h1 className="max-w-xl font-serif text-5xl font-semibold leading-[0.98] tracking-normal text-dark sm:text-6xl lg:text-[4.5rem] xl:text-[5.1rem]" {...fadeUp(0.08)}>
-            We design and build digital products that <span className="text-coral">move businesses forward.</span>
+          <motion.h1 className="max-w-2xl font-serif text-5xl font-semibold leading-[1.02] tracking-normal text-dark sm:text-6xl lg:text-5xl xl:text-[2.9rem]" {...fadeUp(0.08)}>
+            We design and build <span className="text-coral">digital products</span> that move businesses forward.
           </motion.h1>
           <motion.p className="mt-7 max-w-lg text-base leading-7 text-gray-600 sm:text-lg" {...fadeUp(0.16)}>
             Custom websites, web applications and software solutions, designed, developed and supported by Red Coral Innovations.
@@ -151,7 +150,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <motion.div className="relative mx-auto w-full max-w-xl lg:max-w-none" initial={false} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+        <motion.div className="relative mx-auto w-full max-w-xl lg:col-span-5 lg:max-w-none" initial={false} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
           <HeroVisual />
           <p className="mt-1 text-right text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400">Digital products, built with intent</p>
         </motion.div>
